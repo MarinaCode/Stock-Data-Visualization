@@ -10,6 +10,7 @@ import Chart from './components/Chart/Chart';
 
 function App() {
   const [stockState, setStockState] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   let fetchStockData = useCallback(async () => {
     let data = collectData();
@@ -47,6 +48,7 @@ function App() {
       try {
         let data = await fetchStockData();
         constructData(data);
+        setLoading(false);
       } catch (err) {
         console.info("Something went wrong");
       }
@@ -56,11 +58,14 @@ function App() {
   return (
     <div className="app">
       <h1 className="title">Stock Data Visualization </h1>
-      <div className="container">
-        {
-          stockState.map((stock, i) => <Chart stock={stock} key={i} /> )
-        }
-      </div>
+      { isLoading && <div className="loading">Loading ... </div> }
+      { !isLoading &&
+        <div className="container">
+          {
+            stockState.map((stock, i) => <Chart stock={stock} key={i}/>)
+          }
+        </div>
+      }
     </div>
   )
 }
