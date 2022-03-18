@@ -1,0 +1,16 @@
+.app {
+    font-family: sans-serif;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.title {
+    padding: 20px;
+    color: #736564;
+}
+
+.container {
+    padding: 20px;
+    border: 1px solid #ececec;
+}
+
